@@ -42,21 +42,31 @@ namespace TipCalculator
 
         public void Tipcalculate()
         {
-            int no_of_people = Convert.ToInt32(Math.Round(numericUpDown1.Value, 0));
-
-            double tip = (Convert.ToDouble(textBox1.Text) * Convert.ToInt32(Math.Round(numericUpDown2.Value, 0))) / 100;
-
-            double tippp = tip / no_of_people;
-
-            double totalpp = (Double)Convert.ToDouble(textBox1.Text) / no_of_people;
-            double total_bill_pp = totalpp + tippp;
-            
-            if(textBox1.Text.Length>0 && numericUpDown1.Value>0 && numericUpDown2.Value>=0)
+            try
             {
-                textBox2.Text = tippp.ToString();
-                textBox3.Text = total_bill_pp.ToString();
-            }
 
+                int no_of_people = Convert.ToInt32(Math.Round(numericUpDown1.Value, 0));
+
+                double tip = (Convert.ToDouble(textBox1.Text) * Convert.ToInt32(Math.Round(numericUpDown2.Value, 0))) / 100;
+
+                double tippp = tip / no_of_people;
+
+                double totalpp = (Double)Convert.ToDouble(textBox1.Text) / no_of_people;
+                double total_bill_pp = totalpp + tippp;
+
+                if (textBox1.Text.Length > 0 && numericUpDown1.Value > 0 && numericUpDown2.Value >= 0)
+                {
+                    textBox2.Text = tippp.ToString();
+                    textBox3.Text = total_bill_pp.ToString();
+                }
+                else if (textBox1.Text.Length == 0)
+                {
+                    textBox1.Text = "0.0";
+                }
+            }catch(System.FormatException e)
+            {
+                e.ToString();
+            }
 
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
